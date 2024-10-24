@@ -86,14 +86,15 @@ Zero if they are equal
 A positive value if b1->name is greater than b2->name
  */
 
-int compareBoats(void* boat1, void* boat2) {
+// int compare(const void *a, const void *b);
+int compareBoats(const void* boat1, const void* boat2) {
     // QA: Can the pointers be null?
-    Boat* b1 = (Boat*)boat1;
-    Boat* b2 = (Boat*)boat2;
+    const Boat* b1 = (const Boat*)boat1;
+    const Boat* b2 = (const Boat*)boat2;
     return strcasecmp(b1->name, b2->name);
 }
 
-// int compareBoats(Boat* boat1, Boat* boat2) {
+// int compareBoats(const Boat* boat1, const Boat* boat2) {
 //     return strcasecmp(boat1->name, boat2->name);
 // }
 
@@ -302,8 +303,8 @@ void AddBoat(Boat** inventory, int* n) {
                 (*inventory)[*n-1].info.bayLetter = toupper(*token);
                 break;
             case TRAILOR:
-                strncpy((*inventory)[*n-1].info.trailorLicenseTag, token, MAX_TAG_LENGTH - 1);
-                (*inventory)[*n-1].info.trailorLicenseTag[MAX_TAG_LENGTH - 1] = '\0';
+                strncpy((*inventory)[*n-1].info.trailorLicenseTag, token, TRAILOR_TAG_LEN - 1);
+                (*inventory)[*n-1].info.trailorLicenseTag[TRAILOR_TAG_LEN - 1] = '\0';
                 break;
             case STORAGE:
                 (*inventory)[*n-1].info.storageSpaceNumber = atoi(token);
